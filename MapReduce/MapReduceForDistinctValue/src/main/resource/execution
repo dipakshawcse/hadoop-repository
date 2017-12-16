@@ -1,0 +1,3 @@
+hadoop jar <path of jar> <driver class with package name> <input data path of HDFS> <output path at HDFS>
+Ex:
+hadoop jar /home/NN/HadoopRepo/MapReduce/MapReduceForDistinctValue-0.0.1-SNAPSHOT.jar com.bdp.maptreduce.distinct.driver.DistinctValueDriver /user/bdp/mapreduce/distinctvalue/input /user/bdp/mapreduce/distinctvalue/output

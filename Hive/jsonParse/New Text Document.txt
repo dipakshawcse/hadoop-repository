@@ -1,0 +1,33 @@
+CREATE EXTERNAL TABLE `package_report_temp`(
+  `localcode` array<map<string,string>> COMMENT 'from deserializer',
+  `lencode` string COMMENT 'from deserializer',
+  `articlecode` string COMMENT 'from deserializer',
+  `productid` string COMMENT 'from deserializer',
+  `packagingid` string COMMENT 'from deserializer',
+  `eucode` string COMMENT 'from deserializer',
+  `productlifecyclestatus` string COMMENT 'from deserializer',
+  `salesuomlegacy` string COMMENT 'from deserializer',
+  `displayunitofmeasure` string COMMENT 'from deserializer',
+  `contentquantitylegacy` string COMMENT 'from deserializer',
+  `contentuomlegacy` string COMMENT 'from deserializer',
+  `conversionfactortobaseunit` string COMMENT 'from deserializer',
+  `webid` string COMMENT 'from deserializer',
+  `webidexport` array<map<string,string>> COMMENT 'from deserializer',
+  `packaginglinelegacy` array<map<string,string>> COMMENT 'from deserializer',
+  `promotionalproductpackagingline` string COMMENT 'from deserializer',
+  `webproducttitleadvantagelegacy` array<map<string,string>> COMMENT 'from deserializer',
+  `maingtin` string COMMENT 'from deserializer',
+  `gtin` map<string,array<string>> COMMENT 'from deserializer',
+  `duplicatepackagings` string COMMENT 'from deserializer')
+PARTITIONED BY (
+  `division` string)
+ROW FORMAT SERDE
+  'org.openx.data.jsonserde.JsonSerDe'
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.mapred.TextInputFormat'
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  'hdfs://centos7-1.0102wnbqrtjuzfcm5j10ce4rjb.bx.internal.cloudapp.net:8020/report/packageReport'
+TBLPROPERTIES (
+  'transient_lastDdlTime'='1474470062')
